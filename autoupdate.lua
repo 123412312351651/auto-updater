@@ -1,7 +1,4 @@
-require("moonloader")
-require ("sampfuncs")
-local sampev = require("samp.events")
-function main()
+function
     if not isSampLoaded() or not isSampfuncsLoaded() then return end
     while not isSampAvailable() do wait(100) end
 end
