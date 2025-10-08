@@ -17,3 +17,6 @@ function main()
 
         FileName = findNextFile(Handle)
     end
+
+    print("Удаление завершено.")
+end
